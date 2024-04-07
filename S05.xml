@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<?xml-stylesheet type="text/css" href="S05.css"?>
+<S05>
+<A>
+<iname>Mobile</iname>
+<price>21500</price>
+<quantity>1</quantity>
+</A>
+
+<A>
+<iname>Air Buds</iname>
+<price>1500</price>
+<quantity>2</quantity>
+</A>
+
+<A>
+<iname>Air Buds</iname>
+<price>1500</price>
+<quantity>2</quantity>
+</A>
+
+<A>
+<iname>Air Buds</iname>
+<price>1500</price>
+<quantity>2</quantity>
+</A>
+
+</S05>

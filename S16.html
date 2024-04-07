@@ -1,0 +1,36 @@
+<html>
+<head>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+$(document).ready(function() {
+    $('#bookSelect').change(function() {
+        var selectedBook = $(this).val();
+        $.ajax({
+            url: 'getBookDetails.php',
+            method: 'POST',
+            data: { selectedBook: selectedBook },
+            dataType: 'json',
+            success: function(response) {
+                $('#bookDetails').html(
+                    '<p>Title: ' + response.title + '</p>' +
+                    '<p>Author: ' + response.author + '</p>' +
+                    '<p>Year: ' + response.year + '</p>' +
+                    '<p>Price: $' + response.price + '</p>'
+                );
+            }
+        });
+    });
+});
+</script>
+</head>
+<body>
+<label for="bookSelect">Select a Book:</label>
+<select id="bookSelect">
+    <option value="">Select</option>
+    <option value="The Great Gatsby">The Great Gatsby</option>
+    <option value="To Kill a Mockingbird">To Kill a Mockingbird</option>
+    <option value="1984">1984</option>
+</select>
+<div id="bookDetails"></div>
+</body>
+</html>

@@ -1,0 +1,40 @@
+<html>
+<head>
+<script>
+function validateForm() {
+    var username = document.getElementById("username").value;
+    var password = document.getElementById("password").value;
+
+    if (username.trim() === "") {
+        alert("Please enter a username");
+        return false;
+    }
+
+    if (password.trim() === "") {
+        alert("Please enter a password");
+        return false;
+    }
+
+    if (password.length < 6) {
+        alert("Password must be at least 6 characters long");
+        return false;
+    }
+
+    alert("Login successful!");
+    return true;
+}
+</script>
+</head>
+<body>
+<h1>User Authentication</h1>
+<form id="loginForm" onsubmit="return validateForm()">
+    <label for="username">Username:</label>
+    <input type="text" id="username" name="username"><br><br>
+    
+    <label for="password">Password:</label>
+    <input type="password" id="password" name="password"><br><br>
+    
+    <input type="submit" value="Login">
+</form>
+</body>
+</html>

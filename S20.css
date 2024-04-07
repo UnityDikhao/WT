@@ -1,0 +1,33 @@
+students{
+    display:flex;
+    width:400px;
+    height: 170px;
+    border:2px solid white;
+}
+id,name{
+      display:block;
+      padding:5px;
+      color:red;
+      font-family:copperplate Gothic Light;
+      font-size:12pt;
+      font:bold;
+}
+
+age,gender{
+      padding:5px;
+      color:yellow;
+      font-family:Arial;
+      font-size:12pt;
+      font:bold;
+}
+grade{
+      	
+      padding:5px;
+      color:green;
+
+      
+}
+*{
+      background-color:black;
+     
+}

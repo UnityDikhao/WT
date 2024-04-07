@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+$(document).ready(function() {
+    $('#search').keyup(function() {
+        var query = $(this).val();
+        $.ajax({
+            url: 'S15.php',
+            method: 'POST',
+            data: { query: query },
+            success: function(response) {
+                $('#suggestions').html(response);
+            }
+        });
+    });
+});
+</script>
+</head>
+<body>
+<label for="search">Search:</label>
+<input type="text" id="search">
+<div id="suggestions"></div>
+</body>
+</html>

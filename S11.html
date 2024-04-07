@@ -1,0 +1,37 @@
+<html>
+<body>
+<label for="studentName">Enter Student Name:</label>
+<input type="text" id="studentName" onblur="changeStyle()">
+<div id="studentTextBox">Student Name Display Area</div>
+<img id="image" src="img.jpeg" style="display:none;">
+</body>
+<script>
+    function changeStyle() {
+        var studentName = document.getElementById('studentName').value;
+        var studentTextBox = document.getElementById('studentTextBox');
+        var image = document.getElementById('image');
+    
+        if (studentName.trim() !== '') {
+            studentTextBox.style.color = 'red';
+            studentTextBox.style.fontSize = '18px';
+        } else {
+            image.style.display = 'block';
+            image.onload = function() {
+                this.style.width = '200px';
+            };
+            image.onmouseover = function() {
+                this.style.width = '300px';
+            };
+            image.onmouseout = function() {
+                this.style.width = '200px';
+            };
+            image.onclick = function() {
+                this.style.width = '400px';
+            };
+            image.onmouseup = function() {
+                this.style.width = '200px';
+            };
+        }
+    }
+    </script>
+</html>

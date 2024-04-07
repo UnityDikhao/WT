@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Voter Registration</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        $(document).ready(function(){
+            $("#registerForm").submit(function(e){
+                e.preventDefault(); // Prevent form submission
+                var name = $("#name").val().trim().toUpperCase();
+                var age = $("#age").val().trim();
+                var nationality = $("#nationality").val().trim().toUpperCase();
+                $.ajax({
+                    type: "POST",
+                    url: "S27.php",
+                    data: { name: name, age: age, nationality: nationality },
+                    success: function(response){
+                        alert(response);
+                        // Clear form fields
+                        $("#name").val("");
+                        $("#age").val("");
+                        $("#nationality").val("");
+                    }
+                });
+            });
+        });
+    </script>
+</head>
+<body>
+    <h2>Voter Registration</h2>
+    <form id="registerForm">
+        Name (Upper Case): <input type="text" id="name" name="name" pattern="[A-Z\s]+" required><br><br>
+        Age: <input type="number" id="age" name="age" min="18" required><br><br>
+        Nationality (Indian): <input type="text" id="nationality" name="nationality" pattern="INDIAN" required><br><br>
+        <input type="submit" value="Register">
+    </form>
+</body>
+</html>

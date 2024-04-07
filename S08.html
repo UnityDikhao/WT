@@ -1,0 +1,27 @@
+<html>
+<body>
+<button onclick="myAlert()">ALERT</button>
+<button onclick="myConfirm()">CONFIRM</button>
+<script>
+function myAlert()
+{
+         alert("Exams are near , Have you started preparing for?");
+}
+function myConfirm()
+{
+        var p = confirm('Do you want to perform addition of two numbers?');
+        if (p)
+        {
+            var first = prompt('Enter the first number:');
+            var second = prompt('Enter the second number:');
+            var result = parseFloat(first) + parseFloat(second);
+            alert('The addition of ' + first + ' and ' + second + ' is: ' + result);
+        }
+        else
+        {
+            alert("You pressed Cancel!");
+        }
+}
+</script>
+</body>
+</html>
