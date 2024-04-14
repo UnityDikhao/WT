@@ -1,12 +1,10 @@
 <?php
-$name = $_GET["name"];
-if ($name == "")
-{
-    echo " ";
-}
-else if ($name == "Rohit" || $name == "Virat" || $name == "Dhoni" || $name == "Ashwin" || $name == "Harbhajan")
-{
-    echo "Hello master !";
-}
-
+$name = $_POST['name'];
+if(empty($name)) 
+    echo "Stranger, please tell me your name!";
+else 
+if(in_array($name, array("Rohit", "Virat", "Dhoni", "Ashwin", "Harbhajan"))) 
+    echo "Hello, master $name!";
+else 
+    echo "$name, I don't know you!";
 ?>
