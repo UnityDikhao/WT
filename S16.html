@@ -1,36 +1,71 @@
-<html>
+<!DOCTYPE html>
+<html lang="en">
 <head>
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-<script>
-$(document).ready(function() {
-    $('#bookSelect').change(function() {
-        var selectedBook = $(this).val();
-        $.ajax({
-            url: 'getBookDetails.php',
-            method: 'POST',
-            data: { selectedBook: selectedBook },
-            dataType: 'json',
-            success: function(response) {
-                $('#bookDetails').html(
-                    '<p>Title: ' + response.title + '</p>' +
-                    '<p>Author: ' + response.author + '</p>' +
-                    '<p>Year: ' + response.year + '</p>' +
-                    '<p>Price: $' + response.price + '</p>'
-                );
-            }
-        });
-    });
-});
-</script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Book Details</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 </head>
 <body>
-<label for="bookSelect">Select a Book:</label>
-<select id="bookSelect">
-    <option value="">Select</option>
-    <option value="The Great Gatsby">The Great Gatsby</option>
-    <option value="To Kill a Mockingbird">To Kill a Mockingbird</option>
-    <option value="1984">1984</option>
-</select>
-<div id="bookDetails"></div>
+    <h2>Select a Book:</h2>
+    <select id="bookList">
+        <option value="">Select a book</option>
+    </select>
+    <div id="bookDetails"></div>
+
+    <script>
+        $(document).ready(function() {
+            $.ajax({
+                url: 'books.xml',
+                type: 'GET',
+                dataType: 'xml',
+                success: function(xml) {
+                    $(xml).find('book').each(function() {
+                        var title = $(this).find('title').text();
+                        $('#bookList').append($('<option>', {
+                            value: title,
+                            text: title
+                        }));
+                    });
+                },
+                error: function(xhr, status, error) {
+                    console.error('Error:', error);
+                }
+            });
+
+            $('#bookList').on('change', function() {
+                var selectedBook = $(this).val();
+                if (selectedBook !== '') {
+                    $.ajax({
+                        url: 'books.xml',
+                        type: 'GET',
+                        dataType: 'xml',
+                        success: function(xml) {
+                            var details = '';
+                            $(xml).find('book').each(function() {
+                                var title = $(this).find('title').text();
+                                if (title === selectedBook) {
+                                    var author = $(this).find('author').text();
+                                    var year = $(this).find('year').text();
+                                    var price = $(this).find('price').text();
+                                    details += "<h3>Details of " + title + ":</h3>";
+                                    details += "<p>Author: " + author + "</p>";
+                                    details += "<p>Year: " + year + "</p>";
+                                    details += "<p>Price: $" + price + "</p>";
+                                    return false; // Exit loop after finding the book
+                                }
+                            });
+                            $('#bookDetails').html(details);
+                        },
+                        error: function(xhr, status, error) {
+                            console.error('Error:', error);
+                        }
+                    });
+                } else {
+                    $('#bookDetails').html('');
+                }
+            });
+        });
+    </script>
 </body>
 </html>
