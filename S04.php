@@ -1,13 +1,14 @@
 <?php
+session_start();
+
+
 
 $no=$_POST['no'];
 $name=$_POST['name'];
 $address=$_POST['address'];
-
-setcookie('no',$no);
-setcookie('name',$name);
-setcookie('address',$address);
-
+$_SESSION['no']=$no;
+$_SESSION['name']=$name;
+$_SESSION['address']=$address;
 ?>
 
 
